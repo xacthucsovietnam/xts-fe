@@ -1,4 +1,3 @@
-import { Button, Spin, message } from 'antd';
 import { useGetCurrentUserQuery } from '../store/authApi';
 import { components } from '../api/types';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +12,7 @@ export default function Dashboard() {
   });
   const navigate = useNavigate();
 
-  if (isLoading) return <Spin />;
+  if (isLoading) return <div className="flex justify-center items-center h-screen">Loading...</div>;
   if (error || !user) {
     localStorage.removeItem('accessToken');
     navigate('/login');
@@ -21,19 +20,20 @@ export default function Dashboard() {
   }
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>{t('dashboard.title')}</h1>
-      <p>{t('login.welcome', { fullName: user.full_name })}</p>
-      <p>{t('login.email', { email: user.email || 'N/A' })}</p>
-      <p>{t('login.phone', { phone: user.phone || 'N/A' })}</p>
-      <Button
+    <div className="p-5">
+      <h1 className="text-2xl font-bold mb-5">{t('dashboard.title')}</h1>
+      <p className="mb-2">{t('login.welcome', { fullName: user.full_name })}</p>
+      <p className="mb-2">{t('login.email', { email: user.email || 'N/A' })}</p>
+      <p className="mb-2">{t('login.phone', { phone: user.phone || 'N/A' })}</p>
+      <button
         onClick={() => {
           localStorage.removeItem('accessToken');
           navigate('/login');
         }}
+        className="bg-red-500 text-white p-2 rounded hover:bg-red-600"
       >
         {t('login.logout')}
-      </Button>
+      </button>
     </div>
   );
 }

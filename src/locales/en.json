@@ -16,5 +16,105 @@
       "success": "Success!",
       "loginSuccess": "Login successful!",
       "loginFailed": "Login failed: {{message}}"
+    },
+    "pagination": {
+    "showing": "Showing {count} of {total}",
+    "previous": "Previous",
+    "next": "Next"
+    },
+    "upload": {
+      "chooseFile": "Choose File",
+      "noFile": "No file chosen"
+    },
+    "user": {
+      "profile": {
+        "title": "User Profile",
+        "email": "Email: {{email}}",
+        "phone": "Phone: {{phone}}",
+        "edit": "Edit"
+      },
+      "create": {
+        "title": "Create Profile",
+        "full_name": "Full Name",
+        "email": "Email",
+        "phone": "Phone",
+        "avatar": "Avatar",
+        "submit": "Create"
+      },
+      "update": {
+        "title": "Update Profile",
+        "full_name": "Full Name",
+        "email": "Email",
+        "phone": "Phone",
+        "avatar": "Avatar",
+        "submit": "Update"
+      }
+    },
+    "business": {
+    "list": {
+      "title": "Business List",
+      "phone": "Phone: {{phone}}",
+      "create": "Create Business",
+      "viewDetail": "View Detail",
+      "error": "Error loading business list"
+    },
+    "detail": {
+      "title": "Business Detail",
+      "name": "Name",
+      "taxCode": "Tax Code",
+      "phone": "Phone",
+      "edit": "Edit",
+      "error": "Error loading business detail"
+    },
+    "create": {
+      "title": "Create Business",
+      "name": "Business Name",
+      "taxCode": "Tax Code",
+      "phone": "Phone",
+      "logo": "Logo",
+      "submit": "Create"
+    },
+    "update": {
+      "title": "Update Business",
+      "name": "Business Name",
+      "taxCode": "Tax Code",
+      "phone": "Phone",
+      "logo": "Logo",
+      "submit": "Update"
+    }
+  },
+  "product": {
+    "list": {
+      "title": "Product List",
+      "name": "Name",
+      "gtin": "GTIN",
+      "price": "Price",
+      "actions": "Actions",
+      "view": "View",
+      "create": "Create Product",
+      "error": "Error loading product list"
+    },
+    "detail": {
+      "title": "Product Detail",
+      "name": "Name",
+      "gtin": "GTIN",
+      "price": "Price",
+      "edit": "Edit",
+      "error": "Error loading product detail"
+    },
+    "create": {
+      "title": "Create Product",
+      "name": "Product Name",
+      "gtin": "GTIN",
+      "price": "Price",
+      "submit": "Create"
+    },
+    "update": {
+      "title": "Update Product",
+      "name": "Product Name",
+      "gtin": "GTIN",
+      "price": "Price",
+      "submit": "Update"
     }
   }
+}

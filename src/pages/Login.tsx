@@ -1,11 +1,9 @@
-import { Button, Form, Input } from 'antd';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useGetCurrentUserQuery, useLoginMutation } from '../store/authApi';
 import { components } from '../api/types';
 import { useNavigate } from 'react-router-dom';
 import { loginSchema, LoginFormData } from '../utils/validation';
-import { Spin, message } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 type CurrentUserDto = components['schemas']['CurrentUserDto'];
@@ -30,45 +28,56 @@ export default function Login() {
       const response = await login(data).unwrap();
       localStorage.setItem('accessToken', response.accessToken);
       await refetchUser();
-      message.success(t('messages.loginSuccess'));
       navigate('/dashboard');
     } catch (error) {
-      message.error(t('messages.loginFailed', { message: (error as any)?.data?.message || 'Unknown error' }));
+      console.error('Login failed:', error);
     }
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '400px', margin: '0 auto' }}>
-      <h1>{t('login.title')}</h1>
-      <Form onFinish={handleSubmit(onSubmit)} layout="vertical">
-        <Form.Item
-          label={t('login.identifier')}
-          validateStatus={errors.identifier ? 'error' : ''}
-          help={errors.identifier?.message}
-        >
+    <div className="p-5 max-w-md mx-auto">
+      <h1 className="text-2xl font-bold mb-5">{t('login.title')}</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium mb-1">{t('login.identifier')}</label>
           <Controller
             name="identifier"
             control={control}
-            render={({ field }) => <Input {...field} />}
+            render={({ field }) => (
+              <input
+                {...field}
+                className="w-full p-2 border rounded"
+                type="text"
+                placeholder={t('login.identifier')}
+              />
+            )}
           />
-        </Form.Item>
-        <Form.Item
-          label={t('login.password')}
-          validateStatus={errors.password ? 'error' : ''}
-          help={errors.password?.message}
-        >
+          {errors.identifier && <p className="text-red-500 text-sm mt-1">{errors.identifier.message}</p>}
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-1">{t('login.password')}</label>
           <Controller
             name="password"
             control={control}
-            render={({ field }) => <Input.Password {...field} />}
+            render={({ field }) => (
+              <input
+                {...field}
+                className="w-full p-2 border rounded"
+                type="password"
+                placeholder={t('login.password')}
+              />
+            )}
           />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loginLoading}>
-            {t('login.submit')}
-          </Button>
-        </Form.Item>
-      </Form>
+          {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 disabled:bg-blue-300"
+          disabled={loginLoading}
+        >
+          {t('login.submit')}
+        </button>
+      </form>
     </div>
   );
 }

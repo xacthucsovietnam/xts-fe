@@ -16,5 +16,105 @@
       "success": "Thành công!",
       "loginSuccess": "Đăng nhập thành công!",
       "loginFailed": "Đăng nhập thất bại: {{message}}"
+    },
+    "pagination": {
+      "showing": "Hiển thị {count} trên {total}",
+      "previous": "Trước",
+      "next": "Tiếp"
+    },
+    "upload": {
+      "chooseFile": "Chọn file",
+      "noFile": "Chưa chọn file"
+    },
+    "user": {
+      "profile": {
+        "title": "Hồ sơ người dùng",
+        "email": "Email: {{email}}",
+        "phone": "Số điện thoại: {{phone}}",
+        "edit": "Chỉnh sửa"
+      },
+      "create": {
+        "title": "Tạo hồ sơ",
+        "full_name": "Họ và tên",
+        "email": "Email",
+        "phone": "Số điện thoại",
+        "avatar": "Ảnh đại diện",
+        "submit": "Tạo"
+      },
+      "update": {
+        "title": "Cập nhật hồ sơ",
+        "full_name": "Họ và tên",
+        "email": "Email",
+        "phone": "Số điện thoại",
+        "avatar": "Ảnh đại diện",
+        "submit": "Cập nhật"
+      }
+    },
+    "business": {
+    "list": {
+      "title": "Danh sách doanh nghiệp",
+      "phone": "Số điện thoại: {{phone}}",
+      "create": "Tạo doanh nghiệp",
+      "viewDetail": "Xem chi tiết",
+      "error": "Lỗi khi tải danh sách doanh nghiệp"
+    },
+    "detail": {
+      "title": "Chi tiết doanh nghiệp",
+      "name": "Tên",
+      "taxCode": "Mã số thuế",
+      "phone": "Số điện thoại",
+      "edit": "Chỉnh sửa",
+      "error": "Lỗi khi tải chi tiết doanh nghiệp"
+    },
+    "create": {
+      "title": "Tạo doanh nghiệp",
+      "name": "Tên doanh nghiệp",
+      "taxCode": "Mã số thuế",
+      "phone": "Số điện thoại",
+      "logo": "Logo",
+      "submit": "Tạo"
+    },
+    "update": {
+      "title": "Cập nhật doanh nghiệp",
+      "name": "Tên doanh nghiệp",
+      "taxCode": "Mã số thuế",
+      "phone": "Số điện thoại",
+      "logo": "Logo",
+      "submit": "Cập nhật"
+    }
+  },
+  "product": {
+    "list": {
+      "title": "Danh sách sản phẩm",
+      "name": "Tên",
+      "gtin": "GTIN",
+      "price": "Giá",
+      "actions": "Hành động",
+      "view": "Xem",
+      "create": "Tạo sản phẩm",
+      "error": "Lỗi khi tải danh sách sản phẩm"
+    },
+    "detail": {
+      "title": "Chi tiết sản phẩm",
+      "name": "Tên",
+      "gtin": "GTIN",
+      "price": "Giá",
+      "edit": "Chỉnh sửa",
+      "error": "Lỗi khi tải chi tiết sản phẩm"
+    },
+    "create": {
+      "title": "Tạo sản phẩm",
+      "name": "Tên sản phẩm",
+      "gtin": "GTIN",
+      "price": "Giá",
+      "submit": "Tạo"
+    },
+    "update": {
+      "title": "Cập nhật sản phẩm",
+      "name": "Tên sản phẩm",
+      "gtin": "GTIN",
+      "price": "Giá",
+      "submit": "Cập nhật"
     }
   }
+}
