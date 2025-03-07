@@ -1,0 +1,20 @@
+{
+    "login": {
+      "title": "Đăng nhập",
+      "identifier": "Định danh (Email/Số điện thoại)",
+      "password": "Mật khẩu",
+      "submit": "Đăng nhập",
+      "welcome": "Chào mừng, {{fullName}}!",
+      "email": "Email: {{email}}",
+      "phone": "Số điện thoại: {{phone}}",
+      "logout": "Đăng xuất"
+    },
+    "dashboard": {
+      "title": "Bảng điều khiển"
+    },
+    "messages": {
+      "success": "Thành công!",
+      "loginSuccess": "Đăng nhập thành công!",
+      "loginFailed": "Đăng nhập thất bại: {{message}}"
+    }
+  }

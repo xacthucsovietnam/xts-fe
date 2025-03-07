@@ -1,0 +1,20 @@
+{
+    "login": {
+      "title": "Login",
+      "identifier": "Identifier (Email/Phone)",
+      "password": "Password",
+      "submit": "Login",
+      "welcome": "Welcome, {{fullName}}!",
+      "email": "Email: {{email}}",
+      "phone": "Phone: {{phone}}",
+      "logout": "Logout"
+    },
+    "dashboard": {
+      "title": "Dashboard"
+    },
+    "messages": {
+      "success": "Success!",
+      "loginSuccess": "Login successful!",
+      "loginFailed": "Login failed: {{message}}"
+    }
+  }

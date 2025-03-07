@@ -10,7 +10,12 @@ export const getCurrentUser = async (): Promise<CurrentUserDto> => {
   return response.data.data;
 };
 
-export const loginWithPassword = async (credentials: LoginWithPasswordDto): Promise<AuthResponseDto> => {
-  const response = await apiClient.post('/api/auth/login-with-password', credentials);
+export const loginWithPassword = async (
+  credentials: LoginWithPasswordDto
+): Promise<AuthResponseDto> => {
+  const response = await apiClient.post(
+    '/api/auth/login-with-password',
+    credentials
+  );
   return response.data.data;
 };
