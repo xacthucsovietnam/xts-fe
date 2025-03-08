@@ -1,48 +1,68 @@
+import { useState } from 'react';
 import { useGetBusinessListQuery } from '../../store/authApi';
 import { components } from '../../api/types';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import DataTable from '../../components/DataTable';
+import Button from '../../components/Button';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import { useNavigate } from 'react-router-dom';
 
-type BusinessDto = components['schemas']['BusinessDto'];
+type BusinessItemDto = components['schemas']['BusinessItemDto'];
 
 export default function BusinessList() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { data: businesses, isLoading, error } = useGetBusinessListQuery();
+  const [page, setPage] = useState(1);
+  const pageSize = 10;
+  const { data, isLoading, error } = useGetBusinessListQuery();
 
-  if (isLoading) return <div className="flex justify-center items-center h-screen">Loading...</div>;
-  if (error) return <div className="text-red-500 text-center">{t('business.list.error')}</div>;
+  if (isLoading) return <LoadingSpinner />;
+  if (error || !data) return <p>{t('business.list.error')}</p>;
+
+  const columns = [
+    { key: 'id', label: t('business.list.id') },
+    { key: 'name', label: t('business.list.name'), render: (item: BusinessItemDto) => <span>{item.name}</span> },
+    { key: 'address', label: t('business.list.address'), render: (item: BusinessItemDto) => <span>{item.addressFull || 'N/A'}</span> },
+    {
+      key: 'actions',
+      label: t('business.list.actions'),
+      render: (item: BusinessItemDto) => (
+        <div className="space-x-2">
+          <Button
+            onClick={() => navigate(`/business/detail?id=${item.id}`)}
+            variant="primary"
+            size="small"
+          >
+            {t('business.list.view')}
+          </Button>
+          <Button
+            onClick={() => navigate(`/business/update?id=${item.id}`)}
+            variant="secondary"
+            size="small"
+          >
+            {t('business.list.edit')}
+          </Button>
+        </div>
+      ),
+    },
+  ];
 
   return (
-    <div>
+    <div className="p-6">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">{t('business.list.title')}</h2>
-        <button
-          onClick={() => navigate('/business/create')}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
+        <Button onClick={() => navigate('/business/create')} variant="primary">
           {t('business.list.create')}
-        </button>
+        </Button>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {businesses?.map((business) => (
-          <div key={business.id} className="bg-white p-4 rounded-lg shadow hover:shadow-lg">
-            <img
-              src={business.logo || 'https://via.placeholder.com/150'}
-              alt="Logo"
-              className="w-16 h-16 mb-2"
-            />
-            <h3 className="text-lg font-semibold">{business.name}</h3>
-            <p>{t('business.list.phone', { phone: business.phone || 'N/A' })}</p>
-            <button
-              onClick={() => navigate('/business/detail')}
-              className="mt-2 px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
-            >
-              {t('business.list.viewDetail')}
-            </button>
-          </div>
-        ))}
-      </div>
+      <DataTable
+        data={data}
+        columns={columns}
+        total={data.length}
+        page={page}
+        pageSize={pageSize}
+        onPageChange={setPage}
+      />
     </div>
   );
 }

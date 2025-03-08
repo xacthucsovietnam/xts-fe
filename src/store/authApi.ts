@@ -1,28 +1,36 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { components } from '../api/types';
 
+// Định nghĩa các type dữ liệu từ Swagger
 type CurrentUserDto = components['schemas']['CurrentUserDto'];
 type AuthResponseDto = components['schemas']['AuthResponseDto'];
 type LoginWithPasswordDto = components['schemas']['LoginWithPasswordDto'];
-type BusinessDto = components['schemas']['BusinessDto'];
-type ProductDto = components['schemas']['ProductDto'];
-type StampTemplateDto = components['schemas']['StampTemplateDto'];
-type StampGenerationDto = components['schemas']['StampGenerationDto'];
-type ActivationDto = components['schemas']['ActivationDto'];
-type RetailDto = components['schemas']['RetailDto'];
-type DestructionDto = components['schemas']['DestructionDto'];
+type BusinessItemDto = components['schemas']['BusinessItemDto']; // Thay BusinessDto
+type DetailBusinessDto = components['schemas']['DetailBusinessDto']; // Thêm cho /business/current
+type CreateBusinessDto = components['schemas']['CreateBusinessDto'];
+type UpdateBusinessDto = components['schemas']['UpdateBusinessDto'];
+type ProductDetailDto = components['schemas']['ProductDetailDto']; // Thay ProductDto
+type CreateProductDto = components['schemas']['CreateProductDto'];
+type UpdateProductDto = components['schemas']['UpdateProductDto'];
+type StampTemplateDetailDto = components['schemas']['StampTemplateDetailDto']; // Thay StampTemplateDto
+type CreateStampTemplateDto = components['schemas']['CreateStampTemplateDto'];
+type StampGenerationDto = components['schemas']['DetailGenerationDocDto']; // Thay đổi để khớp với response
+type CreateGenerationDocDto = components['schemas']['CreateGenerationDocDto'];
+type ActivationDto = components['schemas']['DetailActivationDocDto']; // Thay đổi để khớp với response
+type CreateActivationDocDto = components['schemas']['CreateActivationDocDto'];
+type RetailDto = components['schemas']['DetailRetailOrderDto']; // Thay đổi để khớp với response
+type CreateRetailDto = components['schemas']['CreateRetailDto'];
+type DestructionDto = components['schemas']['DetailDestructionDto']; // Thay đổi để khớp với response
+type CreateDestructionDto = components['schemas']['CreateDestructionDto'];
 
-interface ApiResponse<T> {
-  status: string;
-  data: T;
-  httpStatus: number;
-}
+// Định nghĩa response API (dựa trên ResponseType từ types.ts)
+type ResponseType<T> = components['schemas']['ResponseType'] & {
+  data?: T;
+};
 
 interface PaginatedResponse<T> {
   items: T[];
-  total: number;
-  page: number;
-  pageSize: number;
+  pagination: components['schemas']['PaginationInfo'];
 }
 
 export const authApi = createApi({
@@ -38,141 +46,170 @@ export const authApi = createApi({
     },
   }),
   endpoints: (builder) => ({
+    // Authentication endpoints
     login: builder.mutation<AuthResponseDto, LoginWithPasswordDto>({
       query: (credentials) => ({
-        url: '/api/auth/login-with-password',
+        url: '/auth/login-with-password',
         method: 'POST',
         body: credentials,
       }),
-      transformResponse: (response: ApiResponse<AuthResponseDto>) => response.data,
+      transformResponse: (response: ResponseType<AuthResponseDto>) => response.data!,
     }),
     getCurrentUser: builder.query<CurrentUserDto, void>({
-      query: () => '/api/me',
-      transformResponse: (response: ApiResponse<CurrentUserDto>) => response.data,
+      query: () => '/me',
+      transformResponse: (response: ResponseType<CurrentUserDto>) => response.data!,
     }),
+
+    // User endpoints
     createProfile: builder.mutation<CurrentUserDto, FormData>({
       query: (formData) => ({
-        url: '/api/user/create-profile',
+        url: '/user/create-profile',
         method: 'POST',
         body: formData,
       }),
-      transformResponse: (response: ApiResponse<CurrentUserDto>) => response.data,
+      transformResponse: (response: ResponseType<CurrentUserDto>) => response.data!,
     }),
     updateProfile: builder.mutation<CurrentUserDto, FormData>({
       query: (formData) => ({
-        url: '/api/user/update-profile',
-        method: 'PUT',
-        body: formData,
-      }),
-      transformResponse: (response: ApiResponse<CurrentUserDto>) => response.data,
-    }),
-    getBusinessList: builder.query<BusinessDto[], void>({
-      query: () => '/api/business',
-      transformResponse: (response: ApiResponse<BusinessDto[]>) => response.data,
-    }),
-    getBusinessDetail: builder.query<BusinessDto, void>({
-      query: () => '/api/business/current',
-      transformResponse: (response: ApiResponse<BusinessDto>) => response.data,
-    }),
-    createBusiness: builder.mutation<BusinessDto, FormData>({
-      query: (formData) => ({
-        url: '/api/business/create',
+        url: '/user/update-profile',
         method: 'POST',
         body: formData,
       }),
-      transformResponse: (response: ApiResponse<BusinessDto>) => response.data,
+      transformResponse: (response: ResponseType<CurrentUserDto>) => response.data!,
     }),
-    updateBusiness: builder.mutation<BusinessDto, FormData>({
+
+    // Business endpoints
+    getBusinessList: builder.query<BusinessItemDto[], void>({
+      query: () => '/business',
+      transformResponse: (response: ResponseType<BusinessItemDto[]>) => response.data!,
+    }),
+    getBusinessDetail: builder.query<DetailBusinessDto, void>({
+      query: () => '/business/current',
+      transformResponse: (response: ResponseType<DetailBusinessDto>) => response.data!,
+    }),
+    createBusiness: builder.mutation<DetailBusinessDto, FormData>({
       query: (formData) => ({
-        url: '/api/business/update',
-        method: 'PUT',
+        url: '/business/create',
+        method: 'POST',
         body: formData,
       }),
-      transformResponse: (response: ApiResponse<BusinessDto>) => response.data,
+      transformResponse: (response: ResponseType<DetailBusinessDto>) => response.data!,
     }),
-    getProductList: builder.query<PaginatedResponse<ProductDto>, { page: number; pageSize: number }>({
-      query: ({ page, pageSize }) => `/api/product/list?page=${page}&pageSize=${pageSize}`,
-      transformResponse: (response: ApiResponse<PaginatedResponse<ProductDto>>) => response.data,
-    }),
-    getProductDetail: builder.query<ProductDto, string>({
-      query: (id) => `/api/product/detail/${id}`,
-      transformResponse: (response: ApiResponse<ProductDto>) => response.data,
-    }),
-    createProduct: builder.mutation<ProductDto, FormData>({
+    updateBusiness: builder.mutation<DetailBusinessDto, FormData>({
       query: (formData) => ({
+        url: '/business/update',
+        method: 'POST',
+        body: formData,
+      }),
+      transformResponse: (response: ResponseType<DetailBusinessDto>) => response.data!,
+    }),
+
+    // Product endpoints
+    getProductList: builder.query<PaginatedResponse<ProductDetailDto>, { page: number; perpage: number }>({
+      query: ({ page, perpage }) => `/api/product/list?page=${page}&perpage=${perpage}`,
+      transformResponse: (response: ResponseType<PaginatedResponse<ProductDetailDto>>) => response.data!,
+    }),
+    getProductDetail: builder.query<ProductDetailDto, string>({
+      query: (id) => `/api/product/detail/${id}`,
+      transformResponse: (response: ResponseType<ProductDetailDto>) => response.data!,
+    }),
+    createProduct: builder.mutation<ProductDetailDto, CreateProductDto>({
+      query: (body) => ({
         url: '/api/product/add',
         method: 'POST',
-        body: formData,
+        body,
       }),
-      transformResponse: (response: ApiResponse<ProductDto>) => response.data,
+      transformResponse: (response: ResponseType<ProductDetailDto>) => response.data!,
     }),
-    updateProduct: builder.mutation<ProductDto, { id: string; formData: FormData }>({
-      query: ({ id, formData }) => ({
+    updateProduct: builder.mutation<ProductDetailDto, UpdateProductDto>({
+      query: ({ id, ...body }) => ({
         url: `/api/product/edit/${id}`,
-        method: 'PUT',
-        body: formData,
+        method: 'POST',
+        body,
       }),
-      transformResponse: (response: ApiResponse<ProductDto>) => response.data,
+      transformResponse: (response: ResponseType<ProductDetailDto>) => response.data!,
     }),
-    getStampTemplateList: builder.query<PaginatedResponse<StampTemplateDto>, { page: number; pageSize: number }>({
-      query: ({ page, pageSize }) => `/api/stamp-template/list?page=${page}&pageSize=${pageSize}`,
-      transformResponse: (response: ApiResponse<PaginatedResponse<StampTemplateDto>>) => response.data,
+
+    // Stamp endpoints
+    getStampTemplateList: builder.query<PaginatedResponse<StampTemplateDetailDto>, { page: number; perpage: number }>({
+      query: ({ page, perpage }) => `/api/stamp-template/list?page=${page}&perpage=${perpage}`,
+      transformResponse: (response: ResponseType<PaginatedResponse<StampTemplateDetailDto>>) => response.data!,
     }),
-    createStampTemplate: builder.mutation<StampTemplateDto, FormData>({
-      query: (formData) => ({
+    createStampTemplate: builder.mutation<StampTemplateDetailDto, CreateStampTemplateDto>({
+      query: (body) => ({
         url: '/api/stamp-template/add',
         method: 'POST',
-        body: formData,
+        body,
       }),
-      transformResponse: (response: ApiResponse<StampTemplateDto>) => response.data,
+      transformResponse: (response: ResponseType<StampTemplateDetailDto>) => response.data!,
     }),
-    createStamp: builder.mutation<StampGenerationDto, { quantity: number; stampTemplateId: string }>({
-      query: (data) => ({
+    createStamp: builder.mutation<StampGenerationDto, CreateGenerationDocDto>({
+      query: (body) => ({
         url: '/api/stamp/generation/add',
         method: 'POST',
-        body: data,
+        body,
       }),
-      transformResponse: (response: ApiResponse<StampGenerationDto>) => response.data,
+      transformResponse: (response: ResponseType<StampGenerationDto>) => response.data!,
     }),
-    getStampList: builder.query<PaginatedResponse<StampGenerationDto>, { page: number; pageSize: number }>({
-      query: ({ page, pageSize }) => `/api/stamp/generation/list?page=${page}&pageSize=${pageSize}`,
-      transformResponse: (response: ApiResponse<PaginatedResponse<StampGenerationDto>>) => response.data,
+    getStampList: builder.query<PaginatedResponse<StampGenerationDto>, { page: number; perpage: number }>({
+      query: ({ page, perpage }) => `/api/stamp/generation/list?page=${page}&perpage=${perpage}`,
+      transformResponse: (response: ResponseType<PaginatedResponse<StampGenerationDto>>) => response.data!,
     }),
-    createActivation: builder.mutation<ActivationDto, FormData>({
-      query: (formData) => ({
+    getStampDetail: builder.query<StampGenerationDto, string>({
+      query: (id) => `/api/stamp/generation/detail/${id}`,
+      transformResponse: (response: ResponseType<StampGenerationDto>) => response.data!,
+    }),
+
+    // Activation endpoints
+    createActivation: builder.mutation<ActivationDto, CreateActivationDocDto>({
+      query: (body) => ({
         url: '/api/stamp/activation/add',
         method: 'POST',
-        body: formData,
+        body,
       }),
-      transformResponse: (response: ApiResponse<ActivationDto>) => response.data,
+      transformResponse: (response: ResponseType<ActivationDto>) => response.data!,
     }),
-    getActivationList: builder.query<PaginatedResponse<ActivationDto>, { page: number; pageSize: number }>({
-      query: ({ page, pageSize }) => `/api/stamp/activation/list?page=${page}&pageSize=${pageSize}`,
-      transformResponse: (response: ApiResponse<PaginatedResponse<ActivationDto>>) => response.data,
+    getActivationList: builder.query<PaginatedResponse<ActivationDto>, { page: number; perpage: number }>({
+      query: ({ page, perpage }) => `/api/stamp/activation/list?page=${page}&perpage=${perpage}`,
+      transformResponse: (response: ResponseType<PaginatedResponse<ActivationDto>>) => response.data!,
     }),
-    createRetail: builder.mutation<RetailDto, { bizStampIds: string[] }>({
-      query: (data) => ({
+    getActivationDetail: builder.query<ActivationDto, string>({
+      query: (id) => `/api/stamp/activation/detail/${id}`,
+      transformResponse: (response: ResponseType<ActivationDto>) => response.data!,
+    }),
+
+    // Retail & Destruction endpoints
+    createRetail: builder.mutation<RetailDto, CreateRetailDto>({
+      query: (body) => ({
         url: '/api/stamp/retail/add',
         method: 'POST',
-        body: data,
+        body,
       }),
-      transformResponse: (response: ApiResponse<RetailDto>) => response.data,
+      transformResponse: (response: ResponseType<RetailDto>) => response.data!,
     }),
-    createDestruction: builder.mutation<DestructionDto, FormData>({
-      query: (formData) => ({
+    createDestruction: builder.mutation<DestructionDto, CreateDestructionDto>({
+      query: (body) => ({
         url: '/api/destruction/add',
         method: 'POST',
-        body: formData,
+        body,
       }),
-      transformResponse: (response: ApiResponse<DestructionDto>) => response.data,
+      transformResponse: (response: ResponseType<DestructionDto>) => response.data!,
     }),
-    getRetailList: builder.query<PaginatedResponse<RetailDto>, { page: number; pageSize: number }>({
-      query: ({ page, pageSize }) => `/api/stamp/retail/list?page=${page}&pageSize=${pageSize}`,
-      transformResponse: (response: ApiResponse<PaginatedResponse<RetailDto>>) => response.data,
+    getRetailList: builder.query<PaginatedResponse<RetailDto>, { page: number; perpage: number }>({
+      query: ({ page, perpage }) => `/api/stamp/retail/list?page=${page}&perpage=${perpage}`,
+      transformResponse: (response: ResponseType<PaginatedResponse<RetailDto>>) => response.data!,
     }),
-    getDestructionList: builder.query<PaginatedResponse<DestructionDto>, { page: number; pageSize: number }>({
-      query: ({ page, pageSize }) => `/api/destruction/list?page=${page}&pageSize=${pageSize}`,
-      transformResponse: (response: ApiResponse<PaginatedResponse<DestructionDto>>) => response.data,
+    getDestructionList: builder.query<PaginatedResponse<DestructionDto>, { page: number; perpage: number }>({
+      query: ({ page, perpage }) => `/api/destruction/list?page=${page}&perpage=${perpage}`,
+      transformResponse: (response: ResponseType<PaginatedResponse<DestructionDto>>) => response.data!,
+    }),
+    getRetailDetail: builder.query<RetailDto, string>({
+      query: (id) => `/api/stamp/retail/detail/${id}`,
+      transformResponse: (response: ResponseType<RetailDto>) => response.data!,
+    }),
+    getDestructionDetail: builder.query<DestructionDto, string>({
+      query: (id) => `/api/destruction/detail/${id}`,
+      transformResponse: (response: ResponseType<DestructionDto>) => response.data!,
     }),
   }),
 });
@@ -183,7 +220,7 @@ export const {
   useCreateProfileMutation,
   useUpdateProfileMutation,
   useGetBusinessListQuery,
-  useGetBusinessDetailQuery,
+  useGetBusinessDetailQuery, // Sử dụng hook này thay vì useGetCurrentBusinessQuery
   useCreateBusinessMutation,
   useUpdateBusinessMutation,
   useGetProductListQuery,
@@ -194,10 +231,14 @@ export const {
   useCreateStampTemplateMutation,
   useCreateStampMutation,
   useGetStampListQuery,
+  useGetStampDetailQuery,
   useCreateActivationMutation,
   useGetActivationListQuery,
+  useGetActivationDetailQuery,
   useCreateRetailMutation,
   useCreateDestructionMutation,
   useGetRetailListQuery,
   useGetDestructionListQuery,
+  useGetRetailDetailQuery,
+  useGetDestructionDetailQuery,
 } = authApi;

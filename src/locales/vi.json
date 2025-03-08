@@ -1,86 +1,134 @@
 {
-    "login": {
-      "title": "Đăng nhập",
-      "identifier": "Định danh (Email/Số điện thoại)",
-      "password": "Mật khẩu",
-      "submit": "Đăng nhập",
-      "welcome": "Chào mừng, {{fullName}}!",
+  "login": {
+    "title": "Đăng nhập",
+    "identifier": "Định danh (Email/Số điện thoại)",
+    "password": "Mật khẩu",
+    "submit": "Đăng nhập",
+    "welcome": "Chào mừng, {{fullName}}!",
+    "email": "Email: {{email}}",
+    "phone": "Số điện thoại: {{phone}}",
+    "logout": "Đăng xuất"
+  },
+  "dashboard": {
+    "title": "Bảng điều khiển"
+  },
+  "messages": {
+    "success": "Thành công!",
+    "loginSuccess": "Đăng nhập thành công!",
+    "loginFailed": "Đăng nhập thất bại: {{message}}"
+  },
+  "pagination": {
+    "showing": "Hiển thị {count} trên {total}",
+    "previous": "Trước",
+    "next": "Tiếp"
+  },
+  "upload": {
+    "chooseFile": "Chọn file",
+    "noFile": "Chưa chọn file"
+  },
+  "user": {
+    "profile": {
+      "title": "Hồ sơ người dùng",
       "email": "Email: {{email}}",
       "phone": "Số điện thoại: {{phone}}",
-      "logout": "Đăng xuất"
-    },
-    "dashboard": {
-      "title": "Bảng điều khiển"
-    },
-    "messages": {
-      "success": "Thành công!",
-      "loginSuccess": "Đăng nhập thành công!",
-      "loginFailed": "Đăng nhập thất bại: {{message}}"
-    },
-    "pagination": {
-      "showing": "Hiển thị {count} trên {total}",
-      "previous": "Trước",
-      "next": "Tiếp"
-    },
-    "upload": {
-      "chooseFile": "Chọn file",
-      "noFile": "Chưa chọn file"
-    },
-    "user": {
-      "profile": {
-        "title": "Hồ sơ người dùng",
-        "email": "Email: {{email}}",
-        "phone": "Số điện thoại: {{phone}}",
-        "edit": "Chỉnh sửa"
-      },
-      "create": {
-        "title": "Tạo hồ sơ",
-        "full_name": "Họ và tên",
-        "email": "Email",
-        "phone": "Số điện thoại",
-        "avatar": "Ảnh đại diện",
-        "submit": "Tạo"
-      },
-      "update": {
-        "title": "Cập nhật hồ sơ",
-        "full_name": "Họ và tên",
-        "email": "Email",
-        "phone": "Số điện thoại",
-        "avatar": "Ảnh đại diện",
-        "submit": "Cập nhật"
-      }
-    },
-    "business": {
-    "list": {
-      "title": "Danh sách doanh nghiệp",
-      "phone": "Số điện thoại: {{phone}}",
-      "create": "Tạo doanh nghiệp",
-      "viewDetail": "Xem chi tiết",
-      "error": "Lỗi khi tải danh sách doanh nghiệp"
-    },
-    "detail": {
-      "title": "Chi tiết doanh nghiệp",
-      "name": "Tên",
-      "taxCode": "Mã số thuế",
-      "phone": "Số điện thoại",
-      "edit": "Chỉnh sửa",
-      "error": "Lỗi khi tải chi tiết doanh nghiệp"
+      "edit": "Chỉnh sửa"
     },
     "create": {
-      "title": "Tạo doanh nghiệp",
-      "name": "Tên doanh nghiệp",
-      "taxCode": "Mã số thuế",
+      "title": "Tạo hồ sơ",
+      "full_name": "Họ và tên",
+      "email": "Email",
       "phone": "Số điện thoại",
-      "logo": "Logo",
+      "avatar": "Ảnh đại diện",
       "submit": "Tạo"
     },
     "update": {
-      "title": "Cập nhật doanh nghiệp",
-      "name": "Tên doanh nghiệp",
-      "taxCode": "Mã số thuế",
+      "title": "Cập nhật hồ sơ",
+      "full_name": "Họ và tên",
+      "email": "Email",
       "phone": "Số điện thoại",
-      "logo": "Logo",
+      "avatar": "Ảnh đại diện",
       "submit": "Cập nhật"
+    }
+  },
+  "business": {
+    "list": {
+      "title": "Danh sách doanh nghiệp",
+      "id": "ID",
+      "name": "Tên",
+      "address": "Địa chỉ",
+      "actions": "Hành động",
+      "view": "Xem",
+      "create": "Tạo mới",
+      "error": "Không thể tải danh sách doanh nghiệp"
+    },
+    "detail": {
+      "title": "Chi tiết doanh nghiệp",
+      "back": "Quay lại",
+      "code": "Mã doanh nghiệp",
+      "fullName": "Tên đầy đủ",
+      "address": "Địa chỉ",
+      "phone": "Số điện thoại",
+      "email": "Email",
+      "taxCode": "Mã số thuế",
+      "website": "Website",
+      "youtube": "YouTube",
+      "createdBy": "Người tạo",
+      "slideImages": "Hình ảnh slide",
+      "introImages": "Hình ảnh giới thiệu",
+      "registrationScans": "Ảnh đăng ký kinh doanh",
+      "error": "Không thể tải thông tin doanh nghiệp"
+    },
+    "create": {
+      "title": "Tạo doanh nghiệp",
+      "back": "Quay lại",
+      "name": "Tên doanh nghiệp",
+      "shortName": "Tên ngắn",
+      "fullName": "Tên đầy đủ",
+      "code": "Mã doanh nghiệp",
+      "phone": "Số điện thoại",
+      "email": "Email",
+      "taxCode": "Mã số thuế",
+      "address": "Địa chỉ",
+      "provinceCode": "Mã tỉnh/thành",
+      "districtCode": "Mã quận/huyện",
+      "wardCode": "Mã phường/xã",
+      "website": "Website",
+      "youtube": "YouTube",
+      "logo": "Logo",
+      "slideImages": "Hình ảnh slide",
+      "introImages": "Hình ảnh giới thiệu",
+      "registrationScans": "Ảnh đăng ký kinh doanh",
+      "required": "Trường này là bắt buộc",
+      "submit": "Tạo",
+      "cancel": "Hủy",
+      "error": "Không thể tạo doanh nghiệp. Vui lòng thử lại."
+    },
+    "update": {
+      "title": "Cập nhật doanh nghiệp",
+      "back": "Quay lại",
+      "name": "Tên doanh nghiệp",
+      "shortName": "Tên ngắn",
+      "fullName": "Tên đầy đủ",
+      "code": "Mã doanh nghiệp",
+      "phone": "Số điện thoại",
+      "email": "Email",
+      "taxCode": "Mã số thuế",
+      "address": "Địa chỉ",
+      "provinceCode": "Mã tỉnh/thành",
+      "districtCode": "Mã quận/huyện",
+      "wardCode": "Mã phường/xã",
+      "website": "Website",
+      "youtube": "YouTube",
+      "logo": "Logo",
+      "currentLogo": "Logo hiện tại",
+      "slideImages": "Hình ảnh slide",
+      "introImages": "Hình ảnh giới thiệu",
+      "registrationScans": "Ảnh đăng ký kinh doanh",
+      "required": "Trường này là bắt buộc",
+      "submit": "Cập nhật",
+      "cancel": "Hủy",
+      "error": "Không thể cập nhật doanh nghiệp. Vui lòng thử lại.",
+      "fetchError": "Không thể tải thông tin doanh nghiệp để cập nhật."
     }
   },
   "product": {

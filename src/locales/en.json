@@ -1,86 +1,134 @@
 {
-    "login": {
-      "title": "Login",
-      "identifier": "Identifier (Email/Phone)",
-      "password": "Password",
-      "submit": "Login",
-      "welcome": "Welcome, {{fullName}}!",
-      "email": "Email: {{email}}",
-      "phone": "Phone: {{phone}}",
-      "logout": "Logout"
-    },
-    "dashboard": {
-      "title": "Dashboard"
-    },
-    "messages": {
-      "success": "Success!",
-      "loginSuccess": "Login successful!",
-      "loginFailed": "Login failed: {{message}}"
-    },
-    "pagination": {
+  "login": {
+    "title": "Login",
+    "identifier": "Identifier (Email/Phone)",
+    "password": "Password",
+    "submit": "Login",
+    "welcome": "Welcome, {{fullName}}!",
+    "email": "Email: {{email}}",
+    "phone": "Phone: {{phone}}",
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "title": "Dashboard"
+  },
+  "messages": {
+    "success": "Success!",
+    "loginSuccess": "Login successful!",
+    "loginFailed": "Login failed: {{message}}"
+  },
+  "pagination": {
     "showing": "Showing {count} of {total}",
     "previous": "Previous",
     "next": "Next"
-    },
-    "upload": {
-      "chooseFile": "Choose File",
-      "noFile": "No file chosen"
-    },
-    "user": {
-      "profile": {
-        "title": "User Profile",
-        "email": "Email: {{email}}",
-        "phone": "Phone: {{phone}}",
-        "edit": "Edit"
-      },
-      "create": {
-        "title": "Create Profile",
-        "full_name": "Full Name",
-        "email": "Email",
-        "phone": "Phone",
-        "avatar": "Avatar",
-        "submit": "Create"
-      },
-      "update": {
-        "title": "Update Profile",
-        "full_name": "Full Name",
-        "email": "Email",
-        "phone": "Phone",
-        "avatar": "Avatar",
-        "submit": "Update"
-      }
-    },
-    "business": {
-    "list": {
-      "title": "Business List",
+  },
+  "upload": {
+    "chooseFile": "Choose File",
+    "noFile": "No file chosen"
+  },
+  "user": {
+    "profile": {
+      "title": "User Profile",
+      "email": "Email: {{email}}",
       "phone": "Phone: {{phone}}",
-      "create": "Create Business",
-      "viewDetail": "View Detail",
-      "error": "Error loading business list"
-    },
-    "detail": {
-      "title": "Business Detail",
-      "name": "Name",
-      "taxCode": "Tax Code",
-      "phone": "Phone",
-      "edit": "Edit",
-      "error": "Error loading business detail"
+      "edit": "Edit"
     },
     "create": {
-      "title": "Create Business",
-      "name": "Business Name",
-      "taxCode": "Tax Code",
+      "title": "Create Profile",
+      "full_name": "Full Name",
+      "email": "Email",
       "phone": "Phone",
-      "logo": "Logo",
+      "avatar": "Avatar",
       "submit": "Create"
     },
     "update": {
-      "title": "Update Business",
-      "name": "Business Name",
-      "taxCode": "Tax Code",
+      "title": "Update Profile",
+      "full_name": "Full Name",
+      "email": "Email",
       "phone": "Phone",
-      "logo": "Logo",
+      "avatar": "Avatar",
       "submit": "Update"
+    }
+  },
+  "business": {
+    "list": {
+      "title": "Business List",
+      "id": "ID",
+      "name": "Name",
+      "address": "Address",
+      "actions": "Actions",
+      "view": "View",
+      "create": "Create",
+      "error": "Failed to load business list"
+    },
+    "detail": {
+      "title": "Business Detail",
+      "back": "Back",
+      "code": "Business Code",
+      "fullName": "Full Name",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "taxCode": "Tax Code",
+      "website": "Website",
+      "youtube": "YouTube",
+      "createdBy": "Created By",
+      "slideImages": "Slide Images",
+      "introImages": "Intro Images",
+      "registrationScans": "Registration Scans",
+      "error": "Failed to load business details"
+    },
+    "create": {
+      "title": "Create Business",
+      "back": "Back",
+      "name": "Business Name",
+      "shortName": "Short Name",
+      "fullName": "Full Name",
+      "code": "Business Code",
+      "phone": "Phone",
+      "email": "Email",
+      "taxCode": "Tax Code",
+      "address": "Address",
+      "provinceCode": "Province Code",
+      "districtCode": "District Code",
+      "wardCode": "Ward Code",
+      "website": "Website",
+      "youtube": "YouTube",
+      "logo": "Logo",
+      "slideImages": "Slide Images",
+      "introImages": "Intro Images",
+      "registrationScans": "Registration Scans",
+      "required": "This field is required",
+      "submit": "Create",
+      "cancel": "Cancel",
+      "error": "Failed to create business. Please try again."
+    },
+    "update": {
+      "title": "Update Business",
+      "back": "Back",
+      "name": "Business Name",
+      "shortName": "Short Name",
+      "fullName": "Full Name",
+      "code": "Business Code",
+      "phone": "Phone",
+      "email": "Email",
+      "taxCode": "Tax Code",
+      "address": "Address",
+      "provinceCode": "Province Code",
+      "districtCode": "District Code",
+      "wardCode": "Ward Code",
+      "website": "Website",
+      "youtube": "YouTube",
+      "logo": "Logo",
+      "currentLogo": "Current Logo",
+      "slideImages": "Slide Images",
+      "introImages": "Intro Images",
+      "registrationScans": "Registration Scans",
+      "required": "This field is required",
+      "submit": "Update",
+      "cancel": "Cancel",
+      "error": "Failed to update business. Please try again.",
+      "fetchError": "Failed to load business information for updating."
     }
   },
   "product": {

@@ -14,16 +14,16 @@ import ProductList from './pages/Product/ProductList';
 import ProductDetail from './pages/Product/ProductDetail';
 import CreateProduct from './pages/Product/CreateProduct';
 import UpdateProduct from './pages/Product/UpdateProduct';
-import StampTemplateList from './pages/Stamp/StampTemplateList';
-import CreateStampTemplate from './pages/Stamp/CreateStampTemplate';
-import CreateStamp from './pages/Stamp/CreateStamp';
-import StampList from './pages/Stamp/StampList';
-import CreateActivation from './pages/Activation/CreateActivation';
-import ActivationList from './pages/Activation/ActivationList';
-import CreateRetail from './pages/RetailDestruction/CreateRetail';
-import CreateDestruction from './pages/RetailDestruction/CreateDestruction';
-import RetailList from './pages/RetailDestruction/RetailList';
-import DestructionList from './pages/RetailDestruction/DestructionList';
+import StampTemplateList from './pages/StampTemplate/StampTemplateList';
+// import CreateStampTemplate from './pages/StampTemplate/CreateStampTemplate';
+// import CreateStamp from './pages/Stamp/CreateStamp';
+// import StampList from './pages/Stamp/StampList';
+// import CreateActivation from './pages/Activation/CreateActivation';
+// import ActivationList from './pages/Activation/ActivationList';
+// import CreateRetail from './pages/Retail/CreateRetail';
+// import CreateDestruction from './pages/Destruction/CreateDestruction';
+// import RetailList from './pages/Retail/RetailList';
+// import DestructionList from './pages/Destruction/DestructionList';
 import { getEnv } from './utils/env';
 
 function App() {
@@ -49,15 +49,15 @@ function App() {
           <Route path="/product/create" element={<CreateProduct />} />
           <Route path="/product/edit/:id" element={<UpdateProduct />} />
           <Route path="/stamp/template/list" element={<StampTemplateList />} />
-          <Route path="/stamp/template/create" element={<CreateStampTemplate />} />
-          <Route path="/stamp/create" element={<CreateStamp />} />
+          {/* <Route path="/stamp/template/create" element={<CreateStampTemplate />} /> */}
+          {/* <Route path="/stamp/create" element={<CreateStamp />} />
           <Route path="/stamp/list" element={<StampList />} />
           <Route path="/activation/create" element={<CreateActivation />} />
           <Route path="/activation/list" element={<ActivationList />} />
           <Route path="/retail/create" element={<CreateRetail />} />
           <Route path="/destruction/create" element={<CreateDestruction />} />
           <Route path="/retail/list" element={<RetailList />} />
-          <Route path="/destruction/list" element={<DestructionList />} />
+          <Route path="/destruction/list" element={<DestructionList />} /> */}
         </Route>
       </Routes>
     </Router>
